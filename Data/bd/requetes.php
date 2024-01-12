@@ -69,6 +69,6 @@ class Requetes{
 }
 
 // Exemple d'appel de la méthode statique
-$pdo = new PDO('sqlite:db.sqlite');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-Requetes::get_all_quizz($pdo);
+//$pdo = new PDO('sqlite:db.sqlite');
+//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//Requetes::get_all_quizz($pdo);
