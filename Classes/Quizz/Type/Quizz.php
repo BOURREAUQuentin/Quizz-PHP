@@ -1,36 +1,30 @@
 <?php
 namespace Quizz\Type;
-use Quizz\Type\RadioGroup;
-use Quizz\Type\Text;
+use Quizz\Type\Question;
 class Quizz{
-    private $questions;
+    private int $id;
+    private string $typeQuizz;
+    private array $listeQuestions;
 
-    public function __construct(){
-        $this->questions = array();
+    public function __construct(int $id, string $typeQuizz){
+        $this->id = $id;
+        $this->typeQuizz = $typeQuizz;
+        $this->listeQuestions = array();
     }
 
-    public function addQuestion(mixed $question): void{
-        $typeQuestion = $question["type"];
-        $uuidQuestion = $question["uuid"];
-        $labelQuestion = $question["label"];
-        $correctAnswerQuestion = $question["correct"];
-        switch ($typeQuestion) {
-            case 'radio':
-                $radioQuestion = new RadioGroup($uuidQuestion, $typeQuestion, $labelQuestion, $correctAnswerQuestion);
-                $choicesRadioQuestion = $question['choices'];
-                foreach ($choicesRadioQuestion as $choice) {
-                    $radioQuestion->addRadioButton($choice);
-                }
-                array_push($this->questions, $radioQuestion);
-                break;
-            case 'text':
-                $textQuestion = new Text($uuidQuestion, $typeQuestion, $labelQuestion, $correctAnswerQuestion);
-                array_push($this->questions, $textQuestion);
-                break;
-        }
+    public function addQuestion(Question $question): void{
+        array_push($this->listeQuestions, $question);
+    }
+
+    public function get_id(): int{
+        return $this->id;
+    }
+
+    public function get_type_quizz(): string{
+        return $this->typeQuizz;
     }
 
     public function getQuestions(): array{
-        return $this->questions;
+        return $this->listeQuestions;
     }
 }
